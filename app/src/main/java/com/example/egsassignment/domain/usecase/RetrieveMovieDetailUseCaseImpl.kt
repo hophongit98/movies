@@ -10,9 +10,13 @@ class RetrieveMovieDetailUseCaseImpl @Inject constructor(
 ) : RetrieveMovieDetailUseCase {
     override suspend fun execute(input: RetrieveMovieDetailUseCase.Input): Flow<RetrieveMovieDetailUseCase.Result> {
         return movieRepository.retrieveMovieDetail(
-            movieId = input.movieId, language = input.language ).map {
-                RetrieveMovieDetailUseCase.Result.Success(it)
+            movieId = input.movieId, language = input.language
+        ).map {
+            it.data?.let { data ->
+                RetrieveMovieDetailUseCase.Result.Success(data)
+            } ?: run {
+                RetrieveMovieDetailUseCase.Result.Error(it.error?.httpCode)
+            }
         }
     }
-
 }
