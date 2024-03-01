@@ -1,12 +1,12 @@
 package com.example.egsassignment.data
 
 import com.example.egsassignment.data.dto.MovieItemDTO
-import com.example.egsassignment.data.dto.MovieListDTO
+import com.example.egsassignment.data.dto.MovieListResponse
 import com.example.egsassignment.domain.model.movielist.MovieItem
 import com.example.egsassignment.domain.model.movielist.MovieList
 
 class MovieListDtoMapperImpl : MovieListDtoMapper {
-    override fun toMovieList(movieListDTO: MovieListDTO): MovieList {
+    override fun toMovieList(movieListDTO: MovieListResponse<List<MovieItemDTO>>): MovieList {
         return MovieList(
             page = movieListDTO.page,
             results = movieListDTO.results.toMovieItem(),

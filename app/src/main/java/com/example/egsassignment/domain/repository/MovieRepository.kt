@@ -1,5 +1,6 @@
 package com.example.egsassignment.domain.repository
 
+import com.example.egsassignment.domain.ApiResult
 import com.example.egsassignment.domain.model.moviedetail.MovieDetails
 import com.example.egsassignment.domain.model.movielist.MovieList
 import kotlinx.coroutines.flow.Flow
@@ -9,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
  * date 28/02/2024.
  */
 interface MovieRepository {
-    suspend fun retrieveMovieList(page: Int = 1, language: String = "en-US"): Flow<MovieList>
-    suspend fun retrieveMovieDetail(movieId: Int, language: String = "en-US"): Flow<MovieDetails>
+    suspend fun retrieveMovieList(page: Int = 1, language: String = "en-US"): Flow<ApiResult<MovieList>>
+    suspend fun retrieveMovieDetail(movieId: Int, language: String = "en-US"): Flow<ApiResult<MovieDetails>>
 }

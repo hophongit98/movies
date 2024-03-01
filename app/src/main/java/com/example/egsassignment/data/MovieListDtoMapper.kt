@@ -1,6 +1,7 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.dto.MovieListDTO
+import com.example.egsassignment.data.dto.MovieItemDTO
+import com.example.egsassignment.data.dto.MovieListResponse
 import com.example.egsassignment.domain.model.movielist.MovieList
 
 /**
@@ -8,6 +9,6 @@ import com.example.egsassignment.domain.model.movielist.MovieList
  * date 01/03/2024.
  */
 interface MovieListDtoMapper {
-    fun toMovieList(movieListDTO: MovieListDTO): MovieList
+    fun toMovieList(movieListDTO: MovieListResponse<List<MovieItemDTO>>): MovieList
 }
 

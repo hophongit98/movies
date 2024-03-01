@@ -1,8 +1,10 @@
 package com.example.egsassignment.data.remote.apiservice
 
 import com.example.egsassignment.data.dto.MovieDetailsDTO
-import com.example.egsassignment.data.dto.MovieListDTO
+import com.example.egsassignment.data.dto.MovieItemDTO
+import com.example.egsassignment.data.dto.MovieListResponse
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -13,14 +15,14 @@ import retrofit2.http.Query
  */
 interface MovieApi {
     @GET("popular")
-    suspend fun retrieveMovieList(
+    fun retrieveMovieList(
         @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1
-    ): Flow<MovieListDTO>
+    ): Response<MovieListResponse<List<MovieItemDTO>>>
 
     @GET("{movie_id}")
-    suspend fun retrieveMovieDetails(
+    fun retrieveMovieDetails(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String = "en-US",
-    ): Flow<MovieDetailsDTO>
+    ): Response<MovieDetailsDTO>
 }

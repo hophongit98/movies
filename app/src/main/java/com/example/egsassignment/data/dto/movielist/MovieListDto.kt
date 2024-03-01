@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName
  * Created by Phillip Truong
  * date 28/02/2024.
  */
-class MovieListDTO(
+class MovieListResponse<T>(
     val page: Int,
-    val results: List<MovieItemDTO>,
+    val results: T,
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_results")
