@@ -14,14 +14,14 @@ class MovieRepositoryImpl @Inject constructor(
     private val movieDetailDtoMapper: MovieDetailDtoMapper
 
 ) : MovieRepository {
-    override suspend fun retrieveMovieList(): Flow<MovieList> {
-        return movieRemoteDataSource.retrieveMovieList().map {
+    override suspend fun retrieveMovieList(page: Int, language: String): Flow<MovieList> {
+        return movieRemoteDataSource.retrieveMovieList(page, language).map {
             movieListDtoMapper.toMovieList(it)
         }
     }
 
-    override suspend fun retrieveMovieDetail(movieId: Int): Flow<MovieDetails> {
-        return movieRemoteDataSource.retrieveMovieDetail(movieId).map {
+    override suspend fun retrieveMovieDetail(movieId: Int, language: String): Flow<MovieDetails> {
+        return movieRemoteDataSource.retrieveMovieDetail(movieId, language).map {
             movieDetailDtoMapper.toMovieDetail(it)
         }
     }

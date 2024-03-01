@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * date 28/02/2024.
  */
 interface MovieRemoteDataSource {
-    suspend fun retrieveMovieList(): Flow<MovieListDTO>
-    suspend fun retrieveMovieDetail(movieId: Int): Flow<MovieDetailsDTO>
+    suspend fun retrieveMovieList(page: Int, language: String): Flow<MovieListDTO>
+    suspend fun retrieveMovieDetail(movieId: Int, language: String): Flow<MovieDetailsDTO>
 }

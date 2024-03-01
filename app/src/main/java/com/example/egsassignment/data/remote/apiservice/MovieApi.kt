@@ -18,6 +18,9 @@ interface MovieApi {
         @Query("page") page: Int = 1
     ): Flow<MovieListDTO>
 
-    @GET("{movie_id}?language=en-US")
-    suspend fun retrieveMovieDetails(@Path("movie_id") movieId: Int, ): Flow<MovieDetailsDTO>
+    @GET("{movie_id}")
+    suspend fun retrieveMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language: String = "en-US",
+    ): Flow<MovieDetailsDTO>
 }

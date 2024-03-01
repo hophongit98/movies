@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * date 28/02/2024.
  */
 interface MovieRepository {
-    suspend fun retrieveMovieList(): Flow<MovieList>
-    suspend fun retrieveMovieDetail(movieId: Int): Flow<MovieDetails>
+    suspend fun retrieveMovieList(page: Int = 1, language: String = "en-US"): Flow<MovieList>
+    suspend fun retrieveMovieDetail(movieId: Int, language: String = "en-US"): Flow<MovieDetails>
 }
