@@ -5,9 +5,7 @@ import com.example.egsassignment.data.dto.MovieItemDTO
 import com.example.egsassignment.data.dto.MovieListResponse
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by Phillip Truong
@@ -15,13 +13,21 @@ import retrofit2.http.Query
  */
 interface MovieApi {
     @GET("popular")
-    fun retrieveMovieList(
+    @Headers(
+        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NDc4N2RjMTEzYzZkNDA0ZGU3MmZkZWI3OGM0MjBjOCIsInN1YiI6IjY1ZGY0ZTE0YTliOWE0MDE4NjhmMmJlMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wd4JCp3EisrZkv-lVDlyxQlR0JIH0__nM5WrHAsCF-I",
+        "Accept: application/json",
+    )
+    suspend fun retrieveMovieList(
         @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1
     ): Response<MovieListResponse<List<MovieItemDTO>>>
 
     @GET("{movie_id}")
-    fun retrieveMovieDetails(
+    @Headers(
+        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NDc4N2RjMTEzYzZkNDA0ZGU3MmZkZWI3OGM0MjBjOCIsInN1YiI6IjY1ZGY0ZTE0YTliOWE0MDE4NjhmMmJlMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wd4JCp3EisrZkv-lVDlyxQlR0JIH0__nM5WrHAsCF-I",
+        "Accept: application/json",
+    )
+    suspend fun retrieveMovieDetails(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String = "en-US",
     ): Response<MovieDetailsDTO>

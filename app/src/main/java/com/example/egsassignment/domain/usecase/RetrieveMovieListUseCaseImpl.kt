@@ -8,7 +8,7 @@ import javax.inject.Inject
 class RetrieveMovieListUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
 ) : RetrieveMovieListUseCase {
-    override suspend fun execute(input: RetrieveMovieListUseCase.Input): Flow<RetrieveMovieListUseCase.Result> {
+    override fun execute(input: RetrieveMovieListUseCase.Input): Flow<RetrieveMovieListUseCase.Result> {
         return movieRepository.retrieveMovieList().map {
             it.data?.let { data ->
                 RetrieveMovieListUseCase.Result.Success(data)

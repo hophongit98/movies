@@ -22,5 +22,6 @@ class NetWorkModule {
     fun provideRetrofit(networkConfigs: MovieNetworkConfigs): Retrofit = Retrofit.Builder()
         .baseUrl(networkConfigs.baseUrl)
         .client(networkConfigs.okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create()).build()
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 }

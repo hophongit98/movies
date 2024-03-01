@@ -1,8 +1,7 @@
 package com.example.egsassignment.network
 
 import android.content.Context
-import okhttp3.Cache
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.TimeUnit
 

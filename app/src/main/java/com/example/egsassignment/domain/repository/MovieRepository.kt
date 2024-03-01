@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
  * date 28/02/2024.
  */
 interface MovieRepository {
-    suspend fun retrieveMovieList(page: Int = 1, language: String = "en-US"): Flow<ApiResult<MovieList>>
-    suspend fun retrieveMovieDetail(movieId: Int, language: String = "en-US"): Flow<ApiResult<MovieDetails>>
+    fun retrieveMovieList(page: Int = 1, language: String = "en-US"): Flow<ApiResult<MovieList>>
+    fun retrieveMovieDetail(movieId: Int, language: String = "en-US"): Flow<ApiResult<MovieDetails>>
 }

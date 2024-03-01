@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
  * date 28/02/2024.
  */
 interface RetrieveMovieListUseCase :
-    UseCase<RetrieveMovieListUseCase.Input, Flow<RetrieveMovieListUseCase.Result>> {
-    data class Input(val page: Int, val language: String)
+    UseCase<RetrieveMovieListUseCase.Input, RetrieveMovieListUseCase.Result> {
+    data class Input(val page: Int = 1, val language: String = "en-US")
 
     sealed class Result {
         data class Success(val movieList: MovieList) : Result()

@@ -2,8 +2,9 @@ package com.example.egsassignment.data
 
 import com.example.egsassignment.data.dto.*
 import com.example.egsassignment.domain.model.moviedetail.*
+import javax.inject.Inject
 
-class MovieDetailDtoMapperImpl : MovieDetailDtoMapper {
+class MovieDetailDtoMapperImpl @Inject constructor() : MovieDetailDtoMapper {
     override fun toMovieDetail(movieDetailsDTO: MovieDetailsDTO): MovieDetails {
         return MovieDetails(
             adult = movieDetailsDTO.adult,
