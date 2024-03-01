@@ -1,6 +1,7 @@
 package com.example.egsassignment.di
 
 import android.content.Context
+import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity
 import com.example.egsassignment.presentation.features.movielist.MovieListActivity
 import dagger.BindsInstance
@@ -21,6 +22,7 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
+    fun inject(application: MovieApplication)
     fun inject(movieListActivity: MovieListActivity)
     fun inject(moveDetailActivity: MoveDetailActivity)
 }

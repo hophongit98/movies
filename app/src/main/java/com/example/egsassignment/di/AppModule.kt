@@ -6,6 +6,5 @@ import dagger.Module
  * Created by Phillip Truong
  * date 29/02/2024.
  */
-@Module
-class AppModule {
-}
+@Module(includes = [NetWorkModule::class])
+class AppModule
