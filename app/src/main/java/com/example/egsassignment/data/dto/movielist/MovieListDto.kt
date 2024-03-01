@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Phillip Truong
  * date 28/02/2024.
  */
-data class MovieListDTO(
+class MovieListDTO(
     val page: Int,
     val results: List<MovieItemDTO>,
     @SerializedName("total_pages")
@@ -15,7 +15,7 @@ data class MovieListDTO(
     val totalResults: Int
 )
 
-data class MovieItemDTO(
+class MovieItemDTO(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,

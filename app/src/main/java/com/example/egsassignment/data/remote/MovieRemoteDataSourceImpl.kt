@@ -1,13 +1,13 @@
 package com.example.egsassignment.data.remote
 
-class MovieRemoteDataSourceImpl : MovieRemoteDataSource {
-    // inject retrofit
+import com.example.egsassignment.data.remote.apiservice.MovieApi
+import javax.inject.Inject
 
-    override fun retrieveMovieList() {
-        TODO("Not yet implemented")
-    }
+class MovieRemoteDataSourceImpl @Inject constructor(
+    private val movieApi: MovieApi
+) : MovieRemoteDataSource {
 
-    override fun retrieveMovieDetail(movieId: Int) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun retrieveMovieList() = movieApi.retrieveMovieList()
+
+    override suspend fun retrieveMovieDetail(movieId: Int) = movieApi.retrieveMovieDetails(movieId)
 }

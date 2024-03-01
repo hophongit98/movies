@@ -6,12 +6,12 @@ package com.example.egsassignment.data.dto
  */
 import com.google.gson.annotations.SerializedName
 
-data class MovieDetailsDTO(
+class MovieDetailsDTO(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("belongs_to_collection")
-    val belongsToCollection: Any?, // You might want to replace `Any?` with a specific type if the structure is known
+    val belongsToCollection: String,
     val budget: Long,
     val genres: List<GenreDTO>,
     val homepage: String,
@@ -46,12 +46,12 @@ data class MovieDetailsDTO(
     val voteCount: Int
 )
 
-data class GenreDTO(
+class GenreDTO(
     val id: Int,
     val name: String
 )
 
-data class ProductionCompanyDTO(
+class ProductionCompanyDTO(
     val id: Int,
     @SerializedName("logo_path")
     val logoPath: String?,
@@ -60,13 +60,13 @@ data class ProductionCompanyDTO(
     val originCountry: String
 )
 
-data class ProductionCountryDTO(
+class ProductionCountryDTO(
     @SerializedName("iso_3166_1")
     val iso31661: String,
     val name: String
 )
 
-data class SpokenLanguageDTO(
+class SpokenLanguageDTO(
     @SerializedName("english_name")
     val englishName: String,
     @SerializedName("iso_639_1")
