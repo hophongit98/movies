@@ -1,4 +1,4 @@
-package com.example.egsassignment.data.dto
+package com.example.egsassignment.data.dto.movielist
 
 import com.google.gson.annotations.SerializedName
 

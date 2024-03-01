@@ -1,7 +1,7 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.dto.MovieItemDTO
-import com.example.egsassignment.data.dto.MovieListResponse
+import com.example.egsassignment.data.dto.movielist.MovieItemDTO
+import com.example.egsassignment.data.dto.movielist.MovieListResponse
 import com.example.egsassignment.domain.model.movielist.MovieList
 
 /**

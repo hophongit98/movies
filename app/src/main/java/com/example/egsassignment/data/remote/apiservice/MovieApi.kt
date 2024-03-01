@@ -1,9 +1,8 @@
 package com.example.egsassignment.data.remote.apiservice
 
-import com.example.egsassignment.data.dto.MovieDetailsDTO
-import com.example.egsassignment.data.dto.MovieItemDTO
-import com.example.egsassignment.data.dto.MovieListResponse
-import kotlinx.coroutines.flow.Flow
+import com.example.egsassignment.data.dto.moviedetail.MovieDetailsDTO
+import com.example.egsassignment.data.dto.movielist.MovieItemDTO
+import com.example.egsassignment.data.dto.movielist.MovieListResponse
 import retrofit2.Response
 import retrofit2.http.*
 

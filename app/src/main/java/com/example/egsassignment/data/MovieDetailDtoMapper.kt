@@ -1,6 +1,6 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.dto.MovieDetailsDTO
+import com.example.egsassignment.data.dto.moviedetail.MovieDetailsDTO
 import com.example.egsassignment.domain.model.moviedetail.MovieDetails
 
 /**

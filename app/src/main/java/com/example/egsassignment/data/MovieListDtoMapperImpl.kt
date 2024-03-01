@@ -1,7 +1,7 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.dto.MovieItemDTO
-import com.example.egsassignment.data.dto.MovieListResponse
+import com.example.egsassignment.data.dto.movielist.MovieItemDTO
+import com.example.egsassignment.data.dto.movielist.MovieListResponse
 import com.example.egsassignment.domain.model.movielist.MovieItem
 import com.example.egsassignment.domain.model.movielist.MovieList
 import javax.inject.Inject
@@ -10,7 +10,7 @@ class MovieListDtoMapperImpl @Inject constructor(): MovieListDtoMapper {
     override fun toMovieList(movieListDTO: MovieListResponse<List<MovieItemDTO>>): MovieList {
         return MovieList(
             page = movieListDTO.page,
-            results = movieListDTO.results?.toMovieItem(),
+            results = movieListDTO.results.toMovieItem(),
             totalPages = movieListDTO.totalPages,
             totalResults = movieListDTO.totalResults
         )

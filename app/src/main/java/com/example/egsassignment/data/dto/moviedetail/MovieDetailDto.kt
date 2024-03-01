@@ -1,4 +1,4 @@
-package com.example.egsassignment.data.dto
+package com.example.egsassignment.data.dto.moviedetail
 
 /**
  * Created by Phillip Truong

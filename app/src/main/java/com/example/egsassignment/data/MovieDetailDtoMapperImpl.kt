@@ -1,6 +1,6 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.dto.*
+import com.example.egsassignment.data.dto.moviedetail.*
 import com.example.egsassignment.domain.model.moviedetail.*
 import javax.inject.Inject
 
