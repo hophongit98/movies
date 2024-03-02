@@ -2,6 +2,7 @@ package com.example.egsassignment.presentation.features.movielist
 
 import androidx.lifecycle.LiveData
 import com.example.egsassignment.domain.model.movielist.MovieList
+import com.example.egsassignment.domain.usecase.RetrieveMovieListUseCase
 import androidx.lifecycle.ViewModel as BaseViewModel
 
 /**
@@ -18,5 +19,6 @@ interface MovieListContract {
         abstract val movies: LiveData<List<MovieListViewHolder.DisplayItem>>
 
         abstract fun onMovieItemSelected(movieId: Int)
+        abstract fun onMoviesRetrieved(result: RetrieveMovieListUseCase.Result)
     }
 }

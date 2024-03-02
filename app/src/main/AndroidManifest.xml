@@ -30,6 +30,11 @@
                 android:value="" />
         </activity>
         <activity android:name="com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity" />
+
+        <service
+            android:name="com.example.egsassignment.service.MoviesService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

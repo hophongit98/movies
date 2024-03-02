@@ -1,5 +1,6 @@
 package com.example.egsassignment.data
 
+import android.util.Log
 import com.example.egsassignment.data.remote.apiservice.MovieApi
 import com.example.egsassignment.domain.ApiResult
 import com.example.egsassignment.domain.ErrorType
@@ -8,48 +9,53 @@ import com.example.egsassignment.domain.model.movielist.MovieList
 import com.example.egsassignment.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApi: MovieApi,
     private val movieListDtoMapper: MovieListDtoMapper,
-    private val movieDetailDtoMapper: MovieDetailDtoMapper
+    private val movieDetailDtoMapper: MovieDetailDtoMapper,
 
-) : MovieRepository {
+    ) : MovieRepository {
     override fun retrieveMovieList(
         page: Int,
-        language: String
+        language: String,
     ): Flow<ApiResult<MovieList>> {
+        Log.d("Phillip", "Repository - retrieveMovieList")
         return flow {
             val response = movieApi.retrieveMovieList(page = page, language = language)
             if (response.isSuccessful && response.body() != null) {
-                ApiResult(data = movieListDtoMapper.toMovieList(response.body()!!))
+                Log.d("Phillip", "Repository - emit data")
+                emit(ApiResult(data = movieListDtoMapper.toMovieList(response.body()!!)))
             } else {
-                ApiResult(
+                emit(ApiResult(
                     error = ErrorType(
                         httpCode = response.code(),
                         response.errorBody().toString()
                     )
-                )
+                ))
             }
         }
     }
 
     override fun retrieveMovieDetail(
         movieId: Int,
-        language: String
+        language: String,
     ): Flow<ApiResult<MovieDetails>> {
+        Log.d("Phillip", "Repository - retrieveMovieDetail")
         return flow {
             val response = movieApi.retrieveMovieDetails(movieId = movieId, language = language)
             if (response.isSuccessful && response.body() != null) {
-                ApiResult(data = movieDetailDtoMapper.toMovieDetail(response.body()!!))
+                Log.d("Phillip", "Repository - emit data")
+                emit(ApiResult(data = movieDetailDtoMapper.toMovieDetail(response.body()!!)))
             } else {
-                ApiResult(
+                emit(ApiResult(
                     error = ErrorType(
                         httpCode = response.code(),
                         response.errorBody().toString()
                     )
-                )
+                ))
             }
         }
     }

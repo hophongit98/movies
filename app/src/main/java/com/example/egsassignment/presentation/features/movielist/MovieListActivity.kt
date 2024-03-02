@@ -1,29 +1,60 @@
 package com.example.egsassignment.presentation.features.movielist
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.presentation.base.BaseActivity
 import com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity
+import com.example.egsassignment.service.MoviesService
+import com.example.egsassignment.utils.GridItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     @Inject
-    lateinit var viewModel: MovieListViewModel
+    lateinit var viewModel: MovieListContract.ViewModel
 
     @Inject
     lateinit var useCase: RetrieveMovieDetailUseCase
 
+    private var service: MoviesService? = null
+
+    private var serviceBound = false
+
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
+            Log.d("Phillip", "onServiceConnected")
+            val myBinder = binder as? MoviesService.MoviesBinder
+            service = myBinder?.getService()
+            serviceBound = true
+
+            lifecycleScope.launch(Dispatchers.Main) {
+                service?.retrieveMovieList()?.collect { data ->
+                    viewModel.onMoviesRetrieved(data)
+                }
+            }
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            Log.d("Phillip", "onServiceDisconnected")
+            serviceBound = false
+        }
+    }
+
     private val moviesAdapter = MoviesApdater {
-        // navigate to movie detail
+        viewModel.onMovieItemSelected(it)
     }
 
     override fun doInject() {
@@ -33,17 +64,42 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     override fun setupView() {
         with(rvMovies) {
-            layoutManager = GridLayoutManager(this@MovieListActivity, 3)
+            layoutManager = GridLayoutManager(this@MovieListActivity, 3).apply {
+                spanSizeLookup = (object : SpanSizeLookup() {
+                    override fun getSpanSize(position: Int): Int {
+                        return when (moviesAdapter.getItemViewType(position)) {
+                            MovieListViewHolder.ViewType.HEADER.ordinal -> 3
+                            else -> 1
+                        }
+                    }
+                })
+            }
+            addItemDecoration(
+                GridItemOffsetDecoration(
+                    context = this@MovieListActivity,
+                    itemOffsetId = R.dimen.dp4,
+                    spanCount = 3,
+                    includeEdge = true
+                )
+            )
             adapter = moviesAdapter
         }
     }
 
     override fun initialise() {
-        // fetch data
+        // do nothing
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("Phillip", "start bindService")
+        val serviceIntent = Intent(this, MoviesService::class.java)
+        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
     override fun observeData() {
         viewModel.movies.observe(this) {
+            Log.d("Phillip", "receive data")
             moviesAdapter.submitList(emptyList())
             moviesAdapter.submitList(it)
         }
@@ -53,17 +109,13 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        lifecycleScope.launch(Dispatchers.IO) {
-            useCase.execute(RetrieveMovieDetailUseCase.Input(movieId = 1072790))
-////                .flowOn(Dispatchers.IO)
-                .onEach {
-                    Log.d("xxx", "activity - onEach - thread=${Thread.currentThread().name}")
-                }
-                .collect {
-                    Log.d("xxx", "activity - collect - thread=${Thread.currentThread().name}")
-                }
+    override fun onStop() {
+        super.onStop()
+        if (serviceBound) {
+            Log.d("Phillip", "unbindService")
+            unbindService(serviceConnection)
+            serviceBound = false
         }
     }
+
 }

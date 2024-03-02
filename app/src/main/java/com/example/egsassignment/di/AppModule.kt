@@ -2,8 +2,12 @@ package com.example.egsassignment.di
 
 import com.example.egsassignment.data.MovieRepositoryImpl
 import com.example.egsassignment.domain.repository.MovieRepository
+import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
+import com.example.egsassignment.domain.usecase.RetrieveMovieListUseCase
+import com.example.egsassignment.service.MoviesService
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 /**
  * Created by Phillip Truong

@@ -18,15 +18,12 @@ class MoveDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
     }
 
     override fun setupView() {
-        TODO("Not yet implemented")
     }
 
     override fun initialise() {
-        TODO("Not yet implemented")
     }
 
     override fun observeData() {
-        TODO("Not yet implemented")
     }
 
     companion object {

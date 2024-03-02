@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity
 import com.example.egsassignment.presentation.features.movielist.di.MovieListComponent
+import com.example.egsassignment.service.MoviesService
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -23,6 +24,7 @@ interface AppComponent {
     }
 
     fun inject(application: MovieApplication)
+    fun inject(moviesService: MoviesService)
     fun inject(moveDetailActivity: MoveDetailActivity)
 
     fun movieListComponent(): MovieListComponent.Factory

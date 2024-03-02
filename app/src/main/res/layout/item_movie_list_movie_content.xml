@@ -24,7 +24,9 @@
             android:layout_marginTop="24dp"
             android:paddingHorizontal="16dp"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:text="No Way Up" />
 
@@ -35,7 +37,7 @@
             android:layout_marginBottom="24dp"
             android:paddingHorizontal="16dp"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="11sp"
             tools:text="Jan 18, 2024" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.cardview.widget.CardView>
