@@ -5,53 +5,53 @@ package com.example.egsassignment.domain.model.moviedetail
  * date 01/03/2024.
  */
 
-class MovieDetails(
-    adult: Boolean,
-    backdropPath: String,
-    belongsToCollection: String?,
-    budget: Long,
-    genres: List<Genre>,
-    homepage: String,
-    id: Int,
-    imdbId: String,
-    originalLanguage: String,
-    originalTitle: String,
-    overview: String,
-    popularity: Double,
-    posterPath: String,
-    productionCompanies: List<ProductionCompany>,
-    productionCountries: List<ProductionCountry>,
-    releaseDate: String,
-    revenue: Long,
-    runtime: Int,
-    spokenLanguages: List<SpokenLanguage>,
-    status: String,
-    tagline: String,
-    title: String,
-    video: Boolean,
-    voteAverage: Double,
-    voteCount: Int
+data class MovieDetail(
+    val adult: Boolean,
+    val backdropPath: String,
+    val belongsToCollection: String?,
+    val budget: Long,
+    val genres: List<Genre>,
+    val homepage: String,
+    val id: Int,
+    val imdbId: String,
+    val originalLanguage: String,
+    val originalTitle: String,
+    val overview: String,
+    val popularity: Double,
+    val posterPath: String,
+    val productionCompanies: List<ProductionCompany>,
+    val productionCountries: List<ProductionCountry>,
+    val releaseDate: String,
+    val revenue: Long,
+    val runtime: Int,
+    val spokenLanguages: List<SpokenLanguage>,
+    val status: String,
+    val tagline: String,
+    val title: String,
+    val video: Boolean,
+    val voteAverage: Double,
+    val voteCount: Int
 )
 
-class Genre(
-    id: Int,
-    name: String
+data class Genre(
+    val id: Int,
+    val name: String
 )
 
-class ProductionCompany(
-    id: Int,
-    logoPath: String?,
-    name: String,
-    originCountry: String
+data class ProductionCompany(
+    val id: Int,
+    val logoPath: String?,
+    val name: String,
+    val originCountry: String
 )
 
-class ProductionCountry(
-    iso31661: String,
-    name: String
+data class ProductionCountry(
+    val iso31661: String,
+    val name: String
 )
 
-class SpokenLanguage(
-    englishName: String,
-    iso6391: String,
-    name: String
+data class SpokenLanguage(
+    val englishName: String,
+    val iso6391: String,
+    val name: String
 )

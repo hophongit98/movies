@@ -1,7 +1,6 @@
 package com.example.egsassignment.domain.usecase
 
-import com.example.egsassignment.domain.model.moviedetail.MovieDetails
-import kotlinx.coroutines.flow.Flow
+import com.example.egsassignment.domain.model.moviedetail.MovieDetail
 
 /**
  * Created by Phillip Truong
@@ -13,7 +12,7 @@ interface RetrieveMovieDetailUseCase :
     data class Input(val movieId: Int, val language: String = "en-US")
 
     sealed class Result {
-        data class Success(val movieDetails: MovieDetails) : Result()
+        data class Success(val movieDetail: MovieDetail) : Result()
         data class Error(val errorCode: Int?) : Result()
     }
 }

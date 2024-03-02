@@ -29,7 +29,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity" />
+        <activity android:name="com.example.egsassignment.presentation.features.moviedetail.MovieDetailActivity" />
 
         <service
             android:name="com.example.egsassignment.service.MoviesService"

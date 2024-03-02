@@ -3,84 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="15dp">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBackdrop"
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBackdrop"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:cardCornerRadius="12dp"
+        tools:layout_height="300dp"
+        tools:layout_width="533dp"
+        tools:src="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivPoster"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_height="300dp"
-            tools:layout_width="533dp"
-            tools:src="@color/black" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvBackdrop"
+        app:layout_constraintTop_toBottomOf="@+id/ivBackdrop"
         tools:text="No Way Up (2024)" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvReleaseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="02/12/2024" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvGenres"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/tvReleaseDate"
-        app:layout_constraintTop_toTopOf="@id/tvReleaseDate"
         app:layout_constraintBottom_toBottomOf="@id/tvReleaseDate"
-        android:layout_marginStart="12dp"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintStart_toEndOf="@+id/tvDuration"
+        app:layout_constraintTop_toTopOf="@id/tvReleaseDate"
         tools:text="Action, Horror, Thriller" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:textColor="@color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/tvGenres"
-        app:layout_constraintTop_toTopOf="@id/tvReleaseDate"
         app:layout_constraintBottom_toBottomOf="@id/tvReleaseDate"
-        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/tvReleaseDate"
+        app:layout_constraintTop_toTopOf="@id/tvReleaseDate"
         tools:text="1h30m" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTagLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textColor="@color/black"
+        android:textSize="14sp"
         android:textStyle="italic"
-        android:textSize="18sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvReleaseDate"
         tools:text="Brace Yourself." />
 
@@ -88,22 +81,22 @@
         android:id="@+id/tvOverviewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="24sp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTagLine"
-        tools:text="Overview" />
+        android:text="@string/overview"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTagLine" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textColor="@color/black"
         android:textSize="12sp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvOverviewTitle"
         tools:text="Characters from different backgrounds are thrown together when the plane they're travelling on crashes into the Pacific Ocean. A nightmare fight for survival ensues with the air supply running out and dangers creeping in from all sides." />
 

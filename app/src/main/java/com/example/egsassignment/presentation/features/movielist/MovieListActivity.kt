@@ -13,7 +13,7 @@ import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.presentation.base.BaseActivity
-import com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity
+import com.example.egsassignment.presentation.features.moviedetail.MovieDetailActivity
 import com.example.egsassignment.service.MoviesService
 import com.example.egsassignment.utils.GridItemOffsetDecoration
 import kotlinx.android.synthetic.main.activity_movie_list.*
@@ -77,9 +77,9 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
             addItemDecoration(
                 GridItemOffsetDecoration(
                     context = this@MovieListActivity,
-                    itemOffsetId = R.dimen.dp4,
+                    itemOffsetId = R.dimen.dp1,
                     spanCount = 3,
-                    includeEdge = true
+                    includeEdge = false
                 )
             )
             adapter = moviesAdapter
@@ -92,9 +92,11 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     override fun onStart() {
         super.onStart()
-        Log.d("Phillip", "start bindService")
-        val serviceIntent = Intent(this, MoviesService::class.java)
-        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
+        if (!serviceBound) {
+            Log.d("Phillip", "start bindService")
+            val serviceIntent = Intent(this, MoviesService::class.java)
+            bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
+        }
     }
 
     override fun observeData() {
@@ -105,7 +107,7 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         }
 
         viewModel.navigateToMovieDetail.observe(this) {
-            MoveDetailActivity.start(this, it)
+            MovieDetailActivity.start(this, it)
         }
     }
 

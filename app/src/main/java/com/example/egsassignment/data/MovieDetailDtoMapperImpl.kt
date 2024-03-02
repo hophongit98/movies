@@ -5,8 +5,8 @@ import com.example.egsassignment.domain.model.moviedetail.*
 import javax.inject.Inject
 
 class MovieDetailDtoMapperImpl @Inject constructor() : MovieDetailDtoMapper {
-    override fun toMovieDetail(movieDetailsDTO: MovieDetailsDTO): MovieDetails {
-        return MovieDetails(
+    override fun toMovieDetail(movieDetailsDTO: MovieDetailsDTO): MovieDetail {
+        return MovieDetail(
             adult = movieDetailsDTO.adult,
             backdropPath = movieDetailsDTO.backdropPath,
             belongsToCollection = movieDetailsDTO.belongsToCollection,

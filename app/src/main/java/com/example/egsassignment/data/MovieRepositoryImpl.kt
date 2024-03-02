@@ -4,12 +4,11 @@ import android.util.Log
 import com.example.egsassignment.data.remote.apiservice.MovieApi
 import com.example.egsassignment.domain.ApiResult
 import com.example.egsassignment.domain.ErrorType
-import com.example.egsassignment.domain.model.moviedetail.MovieDetails
+import com.example.egsassignment.domain.model.moviedetail.MovieDetail
 import com.example.egsassignment.domain.model.movielist.MovieList
 import com.example.egsassignment.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -42,7 +41,7 @@ class MovieRepositoryImpl @Inject constructor(
     override fun retrieveMovieDetail(
         movieId: Int,
         language: String,
-    ): Flow<ApiResult<MovieDetails>> {
+    ): Flow<ApiResult<MovieDetail>> {
         Log.d("Phillip", "Repository - retrieveMovieDetail")
         return flow {
             val response = movieApi.retrieveMovieDetails(movieId = movieId, language = language)
