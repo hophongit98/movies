@@ -7,6 +7,7 @@ import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.presentation.base.BaseActivity
+import com.example.egsassignment.presentation.features.moviedetail.MoveDetailActivity
 import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.onEach
@@ -45,6 +46,10 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         viewModel.movies.observe(this) {
             moviesAdapter.submitList(emptyList())
             moviesAdapter.submitList(it)
+        }
+
+        viewModel.navigateToMovieDetail.observe(this) {
+            MoveDetailActivity.start(this, it)
         }
     }
 
