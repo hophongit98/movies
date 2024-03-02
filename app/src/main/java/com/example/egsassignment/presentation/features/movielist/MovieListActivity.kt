@@ -12,10 +12,14 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieListActivity : AppCompatActivity(R.layout.activity_main) {
+class MovieListActivity : AppCompatActivity(R.layout.activity_movie_list) {
 
     @Inject
     lateinit var useCase: RetrieveMovieDetailUseCase
+
+    private val moviesAdapter = MoviesApdater {
+        // navigate to movie detail
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MovieApplication).appComponent.inject(this)

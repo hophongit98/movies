@@ -4,26 +4,26 @@ package com.example.egsassignment.domain.model.movielist
  * Created by Phillip Truong
  * date 01/03/2024.
  */
-class MovieList(
-    page: Int,
-    results: List<MovieItem>,
-    totalPages: Int,
-    totalResults: Int
+data class MovieList(
+    val page: Int,
+    val results: List<MovieItem>,
+    val totalPages: Int,
+    val totalResults: Int
 )
 
-class MovieItem(
-    adult: Boolean,
-    backdropPath: String,
-    genreIds: List<Int>,
-    id: Int,
-    originalLanguage: String,
-    originalTitle: String,
-    overview: String,
-    popularity: Double,
-    posterPath: String,
-    releaseDate: String,
-    title: String,
-    video: Boolean,
-    voteAverage: Double,
-    voteCount: Int
+data class MovieItem(
+    val adult: Boolean,
+    val backdropPath: String,
+    val genreIds: List<Int>,
+    val id: Int,
+    val originalLanguage: String,
+    val originalTitle: String,
+    val overview: String,
+    val popularity: Double,
+    val posterPath: String,
+    val releaseDate: String,
+    val title: String,
+    val video: Boolean,
+    val voteAverage: Double,
+    val voteCount: Int
 )

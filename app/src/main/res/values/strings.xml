@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EgsAssignment</string>
+    <string name="image_url">https://image.tmdb.org/t/p/w220_and_h330_face/%s</string>
 </resources>
