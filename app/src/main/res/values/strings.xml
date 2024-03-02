@@ -2,4 +2,6 @@
     <string name="app_name">EgsAssignment</string>
     <string name="poster_url">https://media.themoviedb.org/t/p/w220_and_h330_face/%s</string>
     <string name="backdrop_url">https://media.themoviedb.org/t/p/w533_and_h300_bestv2/%s</string>
+    <string name="popular_movies">Popular Movies</string>
+
 </resources>

@@ -16,6 +16,9 @@ import javax.inject.Inject
 class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     @Inject
+    lateinit var viewModel: MovieListViewModel
+
+    @Inject
     lateinit var useCase: RetrieveMovieDetailUseCase
 
     private val moviesAdapter = MoviesApdater {
@@ -23,7 +26,8 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
     }
 
     override fun doInject() {
-        (application as MovieApplication).appComponent.inject(this)
+        (application as MovieApplication).appComponent.movieListComponent()
+            .create().inject(this)
     }
 
     override fun setupView() {
@@ -38,7 +42,10 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
     }
 
     override fun observeData() {
-        // listen data
+        viewModel.movies.observe(this) {
+            moviesAdapter.submitList(emptyList())
+            moviesAdapter.submitList(it)
+        }
     }
 
     override fun onResume() {

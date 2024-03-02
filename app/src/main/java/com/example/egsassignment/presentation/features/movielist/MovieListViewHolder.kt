@@ -18,13 +18,17 @@ abstract class MovieListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     abstract fun bind(item: DisplayItem)
 
     sealed class DisplayItem(val viewType: Int) {
-        data class Header(val title: String): DisplayItem(ViewType.HEADER.ordinal)
+        data class Header(val movieType: MovieType): DisplayItem(ViewType.HEADER.ordinal)
         data class Movie(val movie: MovieItem): DisplayItem(ViewType.MOVIE_CONTENT.ordinal)
     }
 
     enum class ViewType {
         HEADER,
         MOVIE_CONTENT
+    }
+
+    enum class MovieType {
+        POPULAR,
     }
 }
 
