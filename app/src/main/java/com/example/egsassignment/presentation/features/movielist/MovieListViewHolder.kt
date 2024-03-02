@@ -35,9 +35,9 @@ class MovieListHeaderViewHolder(view: View) : MovieListViewHolder(view) {
 }
 
 class MovieListMovieContent(view: View, private val onMovieSelected: (Int) -> Unit) : MovieListViewHolder(view) {
-    val ivPoster = itemView.findViewById<AppCompatImageView>(R.id.movieContentPoster)
-    val tvMovieTitle = itemView.findViewById<AppCompatTextView>(R.id.movieContentTitle)
-    val tvMovieDate = itemView.findViewById<AppCompatTextView>(R.id.movieContentDate)
+    val ivPoster = itemView.findViewById<AppCompatImageView>(R.id.ivMovieContentPoster)
+    val tvMovieTitle = itemView.findViewById<AppCompatTextView>(R.id.tvMovieContentTitle)
+    val tvMovieDate = itemView.findViewById<AppCompatTextView>(R.id.tvMovieContentDate)
 
     override fun bind(item: DisplayItem) = with(itemView) {
         if (item is DisplayItem.Movie) {

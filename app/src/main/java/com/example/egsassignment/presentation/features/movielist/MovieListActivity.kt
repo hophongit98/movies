@@ -1,18 +1,19 @@
 package com.example.egsassignment.presentation.features.movielist
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
+import com.example.egsassignment.presentation.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieListActivity : AppCompatActivity(R.layout.activity_movie_list) {
+class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     @Inject
     lateinit var useCase: RetrieveMovieDetailUseCase
@@ -21,9 +22,23 @@ class MovieListActivity : AppCompatActivity(R.layout.activity_movie_list) {
         // navigate to movie detail
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun doInject() {
         (application as MovieApplication).appComponent.inject(this)
-        super.onCreate(savedInstanceState)
+    }
+
+    override fun setupView() {
+        with(rvMovies) {
+            layoutManager = GridLayoutManager(this@MovieListActivity, 3)
+            adapter = moviesAdapter
+        }
+    }
+
+    override fun initialise() {
+        // fetch data
+    }
+
+    override fun observeData() {
+        // listen data 
     }
 
     override fun onResume() {

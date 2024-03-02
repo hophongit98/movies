@@ -12,13 +12,13 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/movieContentPoster"
+            android:id="@+id/ivMovieContentPoster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:src="@color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/movieContentTitle"
+            android:id="@+id/tvMovieContentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -29,7 +29,7 @@
             tools:text="No Way Up" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/movieContentDate"
+            android:id="@+id/tvMovieContentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
