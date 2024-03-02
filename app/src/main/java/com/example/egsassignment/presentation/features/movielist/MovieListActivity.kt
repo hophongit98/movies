@@ -38,7 +38,7 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
     }
 
     override fun observeData() {
-        // listen data 
+        // listen data
     }
 
     override fun onResume() {

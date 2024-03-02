@@ -43,7 +43,7 @@ class MovieListMovieContent(view: View, private val onMovieSelected: (Int) -> Un
         if (item is DisplayItem.Movie) {
 
             Glide.with(this)
-                .load(context.getString(R.string.image_url, item.movie.posterPath))
+                .load(context.getString(R.string.poster_url, item.movie.posterPath))
                 .apply(RequestOptions())
                 .into(ivPoster)
 

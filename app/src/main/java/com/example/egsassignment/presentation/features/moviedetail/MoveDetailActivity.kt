@@ -1,19 +1,28 @@
 package com.example.egsassignment.presentation.features.moviedetail
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.egsassignment.MovieApplication
+import com.example.egsassignment.R
+import com.example.egsassignment.presentation.base.BaseActivity
 
 /**
  * Created by Phillip Truong
  * date 28/02/2024.
  */
-class MoveDetailActivity : AppCompatActivity() {
+class MoveDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
 
-    // MovieDBService
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun doInject() {
         (application as MovieApplication).appComponent.inject(this)
-        super.onCreate(savedInstanceState)
+    }
+
+    override fun setupView() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initialise() {
+        TODO("Not yet implemented")
+    }
+
+    override fun observeData() {
+        TODO("Not yet implemented")
     }
 }
