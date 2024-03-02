@@ -9,7 +9,7 @@ class MovieDetailDtoMapperImpl @Inject constructor() : MovieDetailDtoMapper {
         return MovieDetail(
             adult = movieDetailsDTO.adult,
             backdropPath = movieDetailsDTO.backdropPath,
-            belongsToCollection = movieDetailsDTO.belongsToCollection,
+            belongsToCollection = movieDetailsDTO.belongsToCollection?.toBelongsToCollection(),
             budget = movieDetailsDTO.budget,
             genres = movieDetailsDTO.genres.toGenre(),
             homepage = movieDetailsDTO.homepage,
@@ -32,6 +32,15 @@ class MovieDetailDtoMapperImpl @Inject constructor() : MovieDetailDtoMapper {
             video = movieDetailsDTO.video,
             voteCount = movieDetailsDTO.voteCount,
             voteAverage = movieDetailsDTO.voteAverage
+        )
+    }
+
+    private fun BelongsToCollectionDTO.toBelongsToCollection(): BelongsToCollection {
+        return BelongsToCollection(
+            id = this.id,
+            name = this.name,
+            posterPath = this.posterPath,
+            backdropPath = this.backdropPath
         )
     }
 

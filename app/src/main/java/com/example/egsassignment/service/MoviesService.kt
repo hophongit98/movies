@@ -45,7 +45,7 @@ class MoviesService: Service() {
     }
 
     fun retrieveMovieDetails(movieId: Int): Flow<RetrieveMovieDetailUseCase.Result> {
-        Log.d("Phillip", "retrieveMovieDetails")
+        Log.d("Phillip", "retrieveMovieDetails - movieId=$movieId")
         return retrieveMovieDetailUseCase.execute(RetrieveMovieDetailUseCase.Input(movieId = movieId))
     }
 

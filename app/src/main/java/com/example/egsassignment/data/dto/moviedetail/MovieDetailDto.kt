@@ -11,7 +11,7 @@ class MovieDetailsDTO(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("belongs_to_collection")
-    val belongsToCollection: String,
+    val belongsToCollection: BelongsToCollectionDTO?,
     val budget: Long,
     val genres: List<GenreDTO>,
     val homepage: String,
@@ -44,6 +44,15 @@ class MovieDetailsDTO(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
+)
+
+class BelongsToCollectionDTO(
+    val id: Int,
+    val name: String,
+    @SerializedName("poster_path")
+    val posterPath: String?,
+    @SerializedName("backdrop_path")
+    val backdropPath: String?,
 )
 
 class GenreDTO(
