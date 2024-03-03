@@ -1,6 +1,6 @@
 package com.example.egsassignment.data.remote.apiservice
 
-import com.example.egsassignment.data.dto.moviedetail.MovieDetailsDTO
+import com.example.egsassignment.data.dto.moviedetail.MovieDetailDTO
 import com.example.egsassignment.data.dto.movielist.MovieItemDTO
 import com.example.egsassignment.data.dto.movielist.MovieListResponse
 import retrofit2.Response
@@ -26,8 +26,8 @@ interface MovieApi {
         "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NDc4N2RjMTEzYzZkNDA0ZGU3MmZkZWI3OGM0MjBjOCIsInN1YiI6IjY1ZGY0ZTE0YTliOWE0MDE4NjhmMmJlMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Wd4JCp3EisrZkv-lVDlyxQlR0JIH0__nM5WrHAsCF-I",
         "Accept: application/json",
     )
-    suspend fun retrieveMovieDetails(
+    suspend fun retrieveMovieDetail(
         @Path("movie_id") movieId: Int,
         @Query("language") language: String = "en-US",
-    ): Response<MovieDetailsDTO>
+    ): Response<MovieDetailDTO>
 }

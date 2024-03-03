@@ -1,6 +1,5 @@
 package com.example.egsassignment.utils
 
-import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,7 +31,7 @@ object DateFormatUtils {
             calendar.time = date!!
             calendar.get(Calendar.YEAR)
         } catch (e: Exception) {
-            Log.e("Phillip", "Error parsing date: ${e.message}")
+            print("Phillip - Error parsing date: ${e.message}")
             null
         }
     }
@@ -48,7 +47,7 @@ object DateFormatUtils {
         return try {
             return outputFormatter.format(inputFormatter.parse(dateString)!!)
         } catch (e: Exception) {
-            Log.e("Phillip", "Error parsing date: ${e.message}")
+            print("Phillip - Error parsing date: ${e.message}")
             null
         }
     }

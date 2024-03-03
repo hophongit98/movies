@@ -27,7 +27,6 @@ class MovieListViewModel @Inject constructor() : MovieListContract.ViewModel() {
     private val displayItems = mutableListOf<DisplayItem>(DisplayItem.Header(movieType = MovieListViewHolder.MovieType.POPULAR))
 
     override fun onServiceBound() {
-        Log.d("Phillip", "onServiceBound - load page=$currentPage")
         _loadPage.value = currentPage
     }
 

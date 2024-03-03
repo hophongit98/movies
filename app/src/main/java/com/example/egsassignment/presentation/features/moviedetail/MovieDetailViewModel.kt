@@ -1,6 +1,5 @@
 package com.example.egsassignment.presentation.features.moviedetail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -63,7 +62,6 @@ class MovieDetailViewModel @Inject constructor() : MovieDetailContract.ViewModel
 
     private fun formatMinutesToHoursAndMinutes(totalMinutes: Int): String? {
         if (totalMinutes < 0) {
-            Log.e("Phillip", "Invalid totalMinutes: $totalMinutes")
             return null
         }
 

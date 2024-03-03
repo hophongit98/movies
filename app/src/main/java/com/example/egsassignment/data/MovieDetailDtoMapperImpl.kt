@@ -5,33 +5,33 @@ import com.example.egsassignment.domain.model.moviedetail.*
 import javax.inject.Inject
 
 class MovieDetailDtoMapperImpl @Inject constructor() : MovieDetailDtoMapper {
-    override fun toMovieDetail(movieDetailsDTO: MovieDetailsDTO): MovieDetail {
+    override fun toMovieDetail(movieDetailDTO: MovieDetailDTO): MovieDetail {
         return MovieDetail(
-            adult = movieDetailsDTO.adult,
-            backdropPath = movieDetailsDTO.backdropPath,
-            belongsToCollection = movieDetailsDTO.belongsToCollection?.toBelongsToCollection(),
-            budget = movieDetailsDTO.budget,
-            genres = movieDetailsDTO.genres.toGenre(),
-            homepage = movieDetailsDTO.homepage,
-            id = movieDetailsDTO.id,
-            imdbId = movieDetailsDTO.imdbId,
-            originalLanguage = movieDetailsDTO.originalLanguage,
-            originalTitle = movieDetailsDTO.originalTitle,
-            overview = movieDetailsDTO.overview,
-            popularity = movieDetailsDTO.popularity,
-            posterPath = movieDetailsDTO.posterPath,
-            productionCompanies = movieDetailsDTO.productionCompanies.toProductionCompany(),
-            productionCountries = movieDetailsDTO.productionCountries.toProductionCountry(),
-            releaseDate = movieDetailsDTO.releaseDate,
-            revenue = movieDetailsDTO.revenue,
-            runtime = movieDetailsDTO.runtime,
-            spokenLanguages = movieDetailsDTO.spokenLanguages.toSpokenLanguage(),
-            status = movieDetailsDTO.status,
-            tagline = movieDetailsDTO.tagline,
-            title = movieDetailsDTO.title,
-            video = movieDetailsDTO.video,
-            voteCount = movieDetailsDTO.voteCount,
-            voteAverage = movieDetailsDTO.voteAverage
+            adult = movieDetailDTO.adult,
+            backdropPath = movieDetailDTO.backdropPath,
+            belongsToCollection = movieDetailDTO.belongsToCollection?.toBelongsToCollection(),
+            budget = movieDetailDTO.budget,
+            genres = movieDetailDTO.genres.toGenre(),
+            homepage = movieDetailDTO.homepage,
+            id = movieDetailDTO.id,
+            imdbId = movieDetailDTO.imdbId,
+            originalLanguage = movieDetailDTO.originalLanguage,
+            originalTitle = movieDetailDTO.originalTitle,
+            overview = movieDetailDTO.overview,
+            popularity = movieDetailDTO.popularity,
+            posterPath = movieDetailDTO.posterPath,
+            productionCompanies = movieDetailDTO.productionCompanies.toProductionCompany(),
+            productionCountries = movieDetailDTO.productionCountries.toProductionCountry(),
+            releaseDate = movieDetailDTO.releaseDate,
+            revenue = movieDetailDTO.revenue,
+            runtime = movieDetailDTO.runtime,
+            spokenLanguages = movieDetailDTO.spokenLanguages.toSpokenLanguage(),
+            status = movieDetailDTO.status,
+            tagline = movieDetailDTO.tagline,
+            title = movieDetailDTO.title,
+            video = movieDetailDTO.video,
+            voteCount = movieDetailDTO.voteCount,
+            voteAverage = movieDetailDTO.voteAverage
         )
     }
 

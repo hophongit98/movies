@@ -6,7 +6,7 @@ package com.example.egsassignment.data.dto.moviedetail
  */
 import com.google.gson.annotations.SerializedName
 
-class MovieDetailsDTO(
+class MovieDetailDTO(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,

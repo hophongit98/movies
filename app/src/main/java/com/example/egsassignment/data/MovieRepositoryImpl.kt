@@ -1,6 +1,5 @@
 package com.example.egsassignment.data
 
-import android.util.Log
 import com.example.egsassignment.data.remote.apiservice.MovieApi
 import com.example.egsassignment.domain.ApiResult
 import com.example.egsassignment.domain.ErrorType
@@ -21,11 +20,9 @@ class MovieRepositoryImpl @Inject constructor(
         page: Int,
         language: String,
     ): Flow<ApiResult<MovieList>> {
-        Log.d("Phillip", "Repository - retrieveMovieList")
         return flow {
             val response = movieApi.retrieveMovieList(page = page, language = language)
             if (response.isSuccessful && response.body() != null) {
-                Log.d("Phillip", "Repository - emit data")
                 emit(ApiResult(data = movieListDtoMapper.toMovieList(response.body()!!)))
             } else {
                 emit(ApiResult(
@@ -42,11 +39,9 @@ class MovieRepositoryImpl @Inject constructor(
         movieId: Int,
         language: String,
     ): Flow<ApiResult<MovieDetail>> {
-        Log.d("Phillip", "Repository - retrieveMovieDetail")
         return flow {
-            val response = movieApi.retrieveMovieDetails(movieId = movieId, language = language)
+            val response = movieApi.retrieveMovieDetail(movieId = movieId, language = language)
             if (response.isSuccessful && response.body() != null) {
-                Log.d("Phillip", "Repository - emit data")
                 emit(ApiResult(data = movieDetailDtoMapper.toMovieDetail(response.body()!!)))
             } else {
                 emit(ApiResult(
