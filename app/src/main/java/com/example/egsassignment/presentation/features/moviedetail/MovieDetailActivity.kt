@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.core.view.isVisible
@@ -58,10 +57,15 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
     override fun initialise() {
         val movieId = intent?.getIntExtra(MOVIE_ID, 0) ?: 0
         viewModel.initialise(movieId)
+        if (!serviceBound) {
+            Log.d("Phillip", "start bindService")
+            val serviceIntent = Intent(this, MoviesService::class.java)
+            bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
+        }
     }
 
     override fun observeData() {
-        viewModel.isServiceBound.observe(this) { id ->
+        viewModel.loadMovieDetail.observe(this) { id ->
             if (!serviceBound) {
                 lifecycleScope.launch(Dispatchers.Main) {
                     service?.retrieveMovieDetails(id)?.collect { data ->
@@ -100,17 +104,8 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (!serviceBound) {
-            Log.d("Phillip", "start bindService")
-            val serviceIntent = Intent(this, MoviesService::class.java)
-            bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         if (serviceBound) {
             Log.d("Phillip", "unbindService")
             unbindService(serviceConnection)

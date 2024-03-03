@@ -1,7 +1,6 @@
 package com.example.egsassignment.presentation.features.moviedetail
 
 import androidx.lifecycle.LiveData
-import com.example.egsassignment.domain.model.moviedetail.MovieDetail
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import androidx.lifecycle.ViewModel as BaseViewModel
 
@@ -13,7 +12,7 @@ interface MovieDetailContract {
 
     abstract class ViewModel: BaseViewModel() {
         abstract val movie: LiveData<MovieDetailDisplayable>
-        abstract val isServiceBound: LiveData<Int>
+        abstract val loadMovieDetail: LiveData<Int>
 
         abstract fun onMovieDetailRetrieved(result: RetrieveMovieDetailUseCase.Result)
         abstract fun onServiceBound()

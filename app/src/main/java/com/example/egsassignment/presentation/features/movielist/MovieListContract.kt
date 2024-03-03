@@ -17,8 +17,15 @@ interface MovieListContract {
 
     abstract class ViewModel : BaseViewModel(), Navigation {
         abstract val movies: LiveData<List<MovieListViewHolder.DisplayItem>>
+        abstract val loadPage: LiveData<Int>
 
         abstract fun onMovieItemSelected(movieId: Int)
         abstract fun onMoviesRetrieved(result: RetrieveMovieListUseCase.Result)
+        abstract fun loadNextPage()
+        abstract fun onServiceBound()
+    }
+
+    interface OnLoadMoreListener {
+        fun onLoadMore()
     }
 }

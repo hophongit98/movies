@@ -21,7 +21,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
+class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
+    MovieListContract.OnLoadMoreListener {
 
     @Inject
     lateinit var viewModel: MovieListContract.ViewModel
@@ -39,12 +40,7 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
             val myBinder = binder as? MoviesService.MoviesBinder
             service = myBinder?.getService()
             serviceBound = true
-
-            lifecycleScope.launch(Dispatchers.Main) {
-                service?.retrieveMovieList()?.collect { data ->
-                    viewModel.onMoviesRetrieved(data)
-                }
-            }
+            viewModel.onServiceBound()
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
@@ -57,23 +53,26 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         viewModel.onMovieItemSelected(it)
     }
 
+    private var customRecyclerviewOnScrollListener: CustomRecyclerviewOnScrollListener? = null
+
     override fun doInject() {
         (application as MovieApplication).appComponent.movieListComponent()
             .create().inject(this)
     }
 
     override fun setupView() {
-        with(rvMovies) {
-            layoutManager = GridLayoutManager(this@MovieListActivity, 3).apply {
-                spanSizeLookup = (object : SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int {
-                        return when (moviesAdapter.getItemViewType(position)) {
-                            MovieListViewHolder.ViewType.HEADER.ordinal -> 3
-                            else -> 1
-                        }
+        val gridLayoutManager = GridLayoutManager(this@MovieListActivity, 3).apply {
+            spanSizeLookup = (object : SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (moviesAdapter.getItemViewType(position)) {
+                        MovieListViewHolder.ViewType.HEADER.ordinal -> 3
+                        else -> 1
                     }
-                })
-            }
+                }
+            })
+        }
+        with(rvMovies) {
+            layoutManager = gridLayoutManager
             addItemDecoration(
                 GridItemOffsetDecoration(
                     context = this@MovieListActivity,
@@ -82,16 +81,15 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
                     includeEdge = false
                 )
             )
+
+            customRecyclerviewOnScrollListener =
+                CustomRecyclerviewOnScrollListener(gridLayoutManager, this@MovieListActivity)
+            addOnScrollListener(customRecyclerviewOnScrollListener!!)
             adapter = moviesAdapter
         }
     }
 
     override fun initialise() {
-        // do nothing
-    }
-
-    override fun onStart() {
-        super.onStart()
         if (!serviceBound) {
             Log.d("Phillip", "start bindService")
             val serviceIntent = Intent(this, MoviesService::class.java)
@@ -101,7 +99,7 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
 
     override fun observeData() {
         viewModel.movies.observe(this) {
-            Log.d("Phillip", "receive data")
+            Log.d("Phillip", "receive data movies=${it.size}")
             moviesAdapter.submitList(emptyList())
             moviesAdapter.submitList(it)
         }
@@ -109,10 +107,19 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         viewModel.navigateToMovieDetail.observe(this) {
             MovieDetailActivity.start(this, it)
         }
+
+        viewModel.loadPage.observe(this) {
+            Log.d("Phillip", "receive loadPage=$it")
+            lifecycleScope.launch(Dispatchers.Main) {
+                service?.retrieveMovieList(it)?.collect { data ->
+                    viewModel.onMoviesRetrieved(data)
+                }
+            }
+        }
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onDestroy() {
+        super.onDestroy()
         if (serviceBound) {
             Log.d("Phillip", "unbindService")
             unbindService(serviceConnection)
@@ -120,4 +127,8 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list) {
         }
     }
 
+    override fun onLoadMore() {
+        Log.d("xxx", "onLoadMore")
+        viewModel.loadNextPage()
+    }
 }

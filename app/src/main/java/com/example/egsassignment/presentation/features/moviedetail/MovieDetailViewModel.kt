@@ -20,8 +20,8 @@ class MovieDetailViewModel @Inject constructor() : MovieDetailContract.ViewModel
     private val _movie = MutableLiveData<MovieDetailContract.MovieDetailDisplayable>()
     override val movie: LiveData<MovieDetailContract.MovieDetailDisplayable> = _movie
 
-    private val _isServiceBound = MutableLiveData<Int>()
-    override val isServiceBound: LiveData<Int> = _isServiceBound
+    private val _loadMovieDetail = MutableLiveData<Int>()
+    override val loadMovieDetail: LiveData<Int> = _loadMovieDetail
 
     private var _movieId: Int = 0
 
@@ -37,12 +37,12 @@ class MovieDetailViewModel @Inject constructor() : MovieDetailContract.ViewModel
     }
 
     override fun onServiceBound() {
-        _isServiceBound.value = _movieId
+        _loadMovieDetail.value = _movieId
     }
 
     override fun initialise(movieId: Int) {
         _movieId = movieId
-        _isServiceBound.value = movieId
+        _loadMovieDetail.value = movieId
     }
 
     private fun handleMovieDetailRetrievedSuccessfully(movieDetail: MovieDetail) {

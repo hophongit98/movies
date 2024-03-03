@@ -39,9 +39,9 @@ class MoviesService: Service() {
         super.onCreate()
     }
 
-    fun retrieveMovieList(): Flow<RetrieveMovieListUseCase.Result> {
+    fun retrieveMovieList(page: Int): Flow<RetrieveMovieListUseCase.Result> {
         Log.d("Phillip", "retrieveMovieList")
-        return retrieveMovieListUseCase.execute(RetrieveMovieListUseCase.Input())
+        return retrieveMovieListUseCase.execute(RetrieveMovieListUseCase.Input(page = page))
     }
 
     fun retrieveMovieDetails(movieId: Int): Flow<RetrieveMovieDetailUseCase.Result> {
