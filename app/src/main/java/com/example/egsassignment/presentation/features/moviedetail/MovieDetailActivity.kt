@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
+import com.example.egsassignment.databinding.ActivityMovieDetailBinding
 import com.example.egsassignment.presentation.base.BaseActivity
 import com.example.egsassignment.service.MoviesService
 import kotlinx.android.synthetic.main.activity_movie_detail.*
@@ -27,6 +28,8 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
 
     @Inject
     lateinit var viewModel: MovieDetailContract.ViewModel
+
+    private lateinit var binding: ActivityMovieDetailBinding
 
     private var service: MoviesService? = null
 
@@ -52,6 +55,9 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
     }
 
     override fun setupView() {
+        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
     }
 
     override fun initialise() {
@@ -76,31 +82,33 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
         }
 
         viewModel.movie.observe(this) {
-            Glide.with(this)
-                .load(getString(R.string.backdrop_url, it.backDrop))
-                .apply(RequestOptions())
-                .into(ivBackdrop)
+            with(binding) {
+                Glide.with(this@MovieDetailActivity)
+                    .load(getString(R.string.backdrop_url, it.backDrop))
+                    .apply(RequestOptions())
+                    .into(ivBackdrop)
 
-            tvTitle.text = if (it.year != null) {
-                getString(R.string.movie_detail_title, it.title, it.year)
-            } else {
-                it.title
-            }
-            it.releaseDate?.let { date ->
-                tvReleaseDate.text = date
-            }
-            it.duration?.let { time ->
-                tvDuration.text = time
-            }
-            tvGenres.isVisible = it.genres.isNotEmpty()
-            tvGenres.text = it.genres
+                tvTitle.text = if (it.year != null) {
+                    getString(R.string.movie_detail_title, it.title, it.year)
+                } else {
+                    it.title
+                }
+                it.releaseDate?.let { date ->
+                    tvReleaseDate.text = date
+                }
+                it.duration?.let { time ->
+                    tvDuration.text = time
+                }
+                tvGenres.isVisible = it.genres.isNotEmpty()
+                tvGenres.text = it.genres
 
-            tvTagLine.isVisible = it.tagLine.isNotEmpty()
-            tvTagLine.text = it.tagLine
+                tvTagLine.isVisible = it.tagLine.isNotEmpty()
+                tvTagLine.text = it.tagLine
 
-            tvOverview.isVisible = it.overview.isNotEmpty()
-            tvOverview.text = it.overview
-            tvOverviewTitle.isVisible = it.overview.isNotEmpty()
+                tvOverview.isVisible = it.overview.isNotEmpty()
+                tvOverview.text = it.overview
+                tvOverviewTitle.isVisible = it.overview.isNotEmpty()
+            }
         }
     }
 

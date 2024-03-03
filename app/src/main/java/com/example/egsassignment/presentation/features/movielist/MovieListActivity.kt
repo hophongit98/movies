@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
+import com.example.egsassignment.databinding.ActivityMovieDetailBinding
+import com.example.egsassignment.databinding.ActivityMovieListBinding
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.presentation.base.BaseActivity
 import com.example.egsassignment.presentation.features.moviedetail.MovieDetailActivity
@@ -29,6 +31,8 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
 
     @Inject
     lateinit var useCase: RetrieveMovieDetailUseCase
+
+    private lateinit var binding: ActivityMovieListBinding
 
     private var service: MoviesService? = null
 
@@ -61,6 +65,9 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
     }
 
     override fun setupView() {
+        binding = ActivityMovieListBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         val gridLayoutManager = GridLayoutManager(this@MovieListActivity, 3).apply {
             spanSizeLookup = (object : SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
@@ -71,7 +78,7 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
                 }
             })
         }
-        with(rvMovies) {
+        with(binding.rvMovies) {
             layoutManager = gridLayoutManager
             addItemDecoration(
                 GridItemOffsetDecoration(
