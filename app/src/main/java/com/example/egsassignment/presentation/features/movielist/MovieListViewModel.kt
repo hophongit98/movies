@@ -1,6 +1,5 @@
 package com.example.egsassignment.presentation.features.movielist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.egsassignment.domain.model.movielist.MovieList

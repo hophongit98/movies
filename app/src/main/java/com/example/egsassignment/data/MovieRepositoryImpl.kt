@@ -1,6 +1,6 @@
 package com.example.egsassignment.data
 
-import com.example.egsassignment.data.remote.apiservice.MovieApi
+import com.example.egsassignment.data.remote.api.MovieApi
 import com.example.egsassignment.domain.ApiResult
 import com.example.egsassignment.domain.ErrorType
 import com.example.egsassignment.domain.model.moviedetail.MovieDetail

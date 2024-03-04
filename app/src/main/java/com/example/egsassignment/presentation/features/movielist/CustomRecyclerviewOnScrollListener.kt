@@ -1,6 +1,5 @@
 package com.example.egsassignment.presentation.features.movielist
 
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 

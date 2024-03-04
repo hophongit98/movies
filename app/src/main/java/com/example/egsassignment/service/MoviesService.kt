@@ -4,12 +4,10 @@ import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import android.util.Log
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.domain.usecase.RetrieveMovieListUseCase
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 /**
@@ -40,12 +38,10 @@ class MoviesService: Service() {
     }
 
     fun retrieveMovieList(page: Int): Flow<RetrieveMovieListUseCase.Result> {
-        Log.d("Phillip", "retrieveMovieList")
         return retrieveMovieListUseCase.execute(RetrieveMovieListUseCase.Input(page = page))
     }
 
     fun retrieveMovieDetails(movieId: Int): Flow<RetrieveMovieDetailUseCase.Result> {
-        Log.d("Phillip", "retrieveMovieDetails - movieId=$movieId")
         return retrieveMovieDetailUseCase.execute(RetrieveMovieDetailUseCase.Input(movieId = movieId))
     }
 

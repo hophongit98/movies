@@ -1,6 +1,6 @@
 package com.example.egsassignment.di
 
-import com.example.egsassignment.data.remote.apiservice.MovieApi
+import com.example.egsassignment.data.remote.api.MovieApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

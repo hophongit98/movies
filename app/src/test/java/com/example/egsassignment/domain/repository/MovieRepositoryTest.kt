@@ -4,7 +4,7 @@ import com.example.egsassignment.data.MovieDetailDtoMapper
 import com.example.egsassignment.data.MovieListDtoMapper
 import com.example.egsassignment.data.MovieRepositoryImpl
 import com.example.egsassignment.data.dto.moviedetail.MovieDetailDTO
-import com.example.egsassignment.data.remote.apiservice.MovieApi
+import com.example.egsassignment.data.remote.api.MovieApi
 import com.example.egsassignment.domain.model.moviedetail.MovieDetail
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

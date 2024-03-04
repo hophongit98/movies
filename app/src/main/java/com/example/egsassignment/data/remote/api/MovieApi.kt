@@ -1,4 +1,4 @@
-package com.example.egsassignment.data.remote.apiservice
+package com.example.egsassignment.data.remote.api
 
 import com.example.egsassignment.data.dto.moviedetail.MovieDetailDTO
 import com.example.egsassignment.data.dto.movielist.MovieItemDTO

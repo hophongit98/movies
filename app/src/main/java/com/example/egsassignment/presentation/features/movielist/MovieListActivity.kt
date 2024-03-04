@@ -5,20 +5,17 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.example.egsassignment.MovieApplication
 import com.example.egsassignment.R
-import com.example.egsassignment.databinding.ActivityMovieDetailBinding
 import com.example.egsassignment.databinding.ActivityMovieListBinding
 import com.example.egsassignment.domain.usecase.RetrieveMovieDetailUseCase
 import com.example.egsassignment.presentation.base.BaseActivity
 import com.example.egsassignment.presentation.features.moviedetail.MovieDetailActivity
 import com.example.egsassignment.service.MoviesService
 import com.example.egsassignment.utils.GridItemOffsetDecoration
-import kotlinx.android.synthetic.main.activity_movie_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -40,7 +37,6 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-            Log.d("Phillip", "onServiceConnected")
             val myBinder = binder as? MoviesService.MoviesBinder
             service = myBinder?.getService()
             serviceBound = true
@@ -48,7 +44,6 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-            Log.d("Phillip", "onServiceDisconnected")
             serviceBound = false
         }
     }
@@ -98,7 +93,6 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
 
     override fun initialise() {
         if (!serviceBound) {
-            Log.d("Phillip", "start bindService")
             val serviceIntent = Intent(this, MoviesService::class.java)
             bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
@@ -106,7 +100,6 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
 
     override fun observeData() {
         viewModel.movies.observe(this) {
-            Log.d("Phillip", "receive data movies=${it.size}")
             moviesAdapter.submitList(emptyList())
             moviesAdapter.submitList(it)
         }
@@ -116,7 +109,6 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
         }
 
         viewModel.loadPage.observe(this) {
-            Log.d("Phillip", "receive loadPage=$it")
             lifecycleScope.launch(Dispatchers.Main) {
                 service?.retrieveMovieList(it)?.collect { data ->
                     viewModel.onMoviesRetrieved(data)
@@ -128,14 +120,12 @@ class MovieListActivity : BaseActivity(R.layout.activity_movie_list),
     override fun onDestroy() {
         super.onDestroy()
         if (serviceBound) {
-            Log.d("Phillip", "unbindService")
             unbindService(serviceConnection)
             serviceBound = false
         }
     }
 
     override fun onLoadMore() {
-        Log.d("xxx", "onLoadMore")
         viewModel.loadNextPage()
     }
 }

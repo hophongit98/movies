@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -15,7 +14,6 @@ import com.example.egsassignment.R
 import com.example.egsassignment.databinding.ActivityMovieDetailBinding
 import com.example.egsassignment.presentation.base.BaseActivity
 import com.example.egsassignment.service.MoviesService
-import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,7 +35,6 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
-            Log.d("Phillip", "onServiceConnected")
             val myBinder = binder as? MoviesService.MoviesBinder
             service = myBinder?.getService()
             serviceBound = true
@@ -45,7 +42,6 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
         }
 
         override fun onServiceDisconnected(name: ComponentName?) {
-            Log.d("Phillip", "onServiceDisconnected")
             serviceBound = false
         }
     }
@@ -64,7 +60,6 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
         val movieId = intent?.getIntExtra(MOVIE_ID, 0) ?: 0
         viewModel.initialise(movieId)
         if (!serviceBound) {
-            Log.d("Phillip", "start bindService")
             val serviceIntent = Intent(this, MoviesService::class.java)
             bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
         }
@@ -115,7 +110,6 @@ class MovieDetailActivity : BaseActivity(R.layout.activity_movie_detail) {
     override fun onDestroy() {
         super.onDestroy()
         if (serviceBound) {
-            Log.d("Phillip", "unbindService")
             unbindService(serviceConnection)
             serviceBound = false
         }
